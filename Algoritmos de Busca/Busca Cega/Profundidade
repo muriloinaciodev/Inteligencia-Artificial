@@ -1,0 +1,13 @@
+def busca_profundidade(estado_inicial, teste_objetivo, acoes, custo):
+    fronteira = [estado_inicial]
+    visitados = set()
+    while fronteira:
+        estado_atual = fronteira.pop()
+        if teste_objetivo(estado_atual):
+            return estado_atual
+        visitados.add(estado_atual)
+        sucessores = acoes(estado_atual)
+        for sucessor in sucessores[::-1]:
+            if sucessor not in visitados and sucessor not in fronteira:
+                fronteira.append(sucessor)
+    return None
